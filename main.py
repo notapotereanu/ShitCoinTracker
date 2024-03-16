@@ -12,7 +12,7 @@ def unpackJson(fileName):
             
 def createDictFromEntry(entry):
     # time.sleep(2) # throling
-    url = f"https://api.coinmarketcap.com/data-api/v3/cryptocurrency/detail/chart?id={entry["id"]}&range=1M"
+    url = f"https://api.coinmarketcap.com/data-api/v3/cryptocurrency/detail/chart?id={entry['id']}&range=1M"
     
     response = requests.get(url)
     
@@ -31,14 +31,15 @@ def createDictFromEntry(entry):
     increaseInLastMonth = (last_value_v - first_value_v) / first_value_v * 100 if first_value_v != 0 else 0  # Added a zero check to avoid division by zero
 
     dictionary = {
-        "id": entry["id"],
-        "rank": entry["rank"],
-        "symbol": entry["symbol"],
+        "id": entry['id'],
+        "rank": entry['rank'],
+        "symbol": entry['symbol'],
         "firstPrice":  round(first_value_v,2), 
         "lastPrice":  round(last_value_v,2),
         "increaseInLastMonth": round(increaseInLastMonth,2),
-        "platform": entry["platform"],
+        "platform": entry['platform'],
     }
+    print(f"id: {entry['id']} name: {entry['symbol']}")
 
     return dictionary
 
